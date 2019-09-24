@@ -7,7 +7,7 @@ services:
     build:
       context: ./build
       dockerfile: Dockerfile
-    image: jmaclean/micro-cheese:gouda
+    image: jmaclean/micro-cheese:old-amsterdam
     ports:
       - "80:80"
       - "443:443"

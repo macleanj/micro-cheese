@@ -18,5 +18,5 @@ CMD /run.sh
 
 # ADD www /www
 # ADD www/beemster /www
-ADD www/gouda /www
-# ADD www/old-amsterdam /www
+# ADD www/gouda /www
+ADD www/old-amsterdam /www
