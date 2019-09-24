@@ -7,7 +7,7 @@ services:
     build:
       context: ./build
       dockerfile: Dockerfile
-    image: jmaclean/micro-cheese:cheese
+    image: jmaclean/micro-cheese:beemster
     ports:
       - "80:80"
       - "443:443"

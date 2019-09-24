@@ -16,7 +16,7 @@ ENV LISTEN_PORT=80
 EXPOSE 80 443
 CMD /run.sh
 
-ADD www /www
-# ADD www/beemster /www
+# ADD www /www
+ADD www/beemster /www
 # ADD www/gouda /www
 # ADD www/old-amsterdam /www
