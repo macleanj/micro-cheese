@@ -1,22 +1,15 @@
-FROM alpine:3.4
+FROM bitnami/nginx:1.16.0
 
-RUN apk --update add \
-    nginx \
-    php5-fpm \
-    bash && \
-    mkdir -p /run/nginx
+LABEL maintainer="Jerome Mac Lean"
+LABEL description="Small microservice application to test Cloud and CICD solutions"
 
-ADD nginx.conf /etc/nginx/
-ADD php-fpm.conf /etc/php5/php-fpm.conf
-ADD run.sh /run.sh
-ADD ssl /ssl
+ADD nginx.conf /opt/bitnami/nginx/conf/server_blocks/
+# ADD run.sh /run.sh
+ADD ssl/certs/* /opt/bitnami/nginx/conf/server_blocks/ssl/certs/
 
-ENV LISTEN_PORT=80
+# ENV LISTEN_PORT=80
 
 EXPOSE 80 443
-CMD /run.sh
+# CMD /run.sh
 
-ADD www /www
-# ADD www/beemster /www
-# ADD www/gouda /www
-# ADD www/old-amsterdam /www
+ADD www /app
