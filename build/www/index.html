@@ -19,14 +19,26 @@
 		<tr style="height: 20px">
 			<td style="width: 1000px; text-align: center;vertical-align: top;">
 			</br>
-				<p><a href="old-amsterdam/index.html"><span style="color: #333333;"><img style="display: block; margin-left: auto; margin-right: auto;" src="/old-amsterdam/old-amsterdam.png" alt="interactive connection" width="270" /></span></a></p>
+				<p id="old-amsterdam"><span style="color: #333333;"><img style="display: block; margin-left: auto; margin-right: auto;" src="/old-amsterdam/old-amsterdam.png" alt="interactive connection" width="270" /></span></a></p>
 			</td>
 			<td style="width: 1000px; text-align: center;">
-				<p><a href="beemster/index.html"><span style="color: #333333;"><img style="display: block; margin-left: auto; margin-right: auto;" src="/beemster/beemster.png" alt="interactive connection" width="400" /></span></a></p>
+				<p id="beemster"><span style="color: #333333;"><img style="display: block; margin-left: auto; margin-right: auto;" src="/beemster/beemster.png" alt="interactive connection" width="400" /></span></a></p>
 			</td>
 			<td style="width: 1000px; text-align: center;">
-				<p><a href="gouda/index.html"><span style="color: #333333;"><img style="display: block; margin-left: auto; margin-right: auto;" src="/gouda/gouda.jpg" alt="interactive connection" width="400" /></span></a></p>
+				<p id="gouda"><span style="color: #333333;"><img style="display: block; margin-left: auto; margin-right: auto;" src="/gouda/gouda.jpg" alt="interactive connection" width="400" /></span></a></p>
 			</td>
 		</tr>
 	</tbody>
 </table>
+
+<script type="text/javascript">
+	document.getElementById("old-amsterdam").onclick = function () {
+			location.href = "old-amsterdam/index.html";
+	};
+	document.getElementById("beemster").onclick = function () {
+			location.href = "beemster/index.html";
+	};
+	document.getElementById("gouda").onclick = function () {
+			location.href = "gouda/index.html";
+	};
+</script>
