@@ -5,11 +5,11 @@ services:
     hostname: micro-cheese
     container_name: micro-cheese
     build:
-      context: ./build
+      context: .
       dockerfile: Dockerfile
     image: jmaclean/micro-cheese:cheese
     ports:
-      - "80:8080"
-      - "443:8443"
+      - "8080:8080"
+      - "8443:8443"
     volumes: 
       - ./build/www:/app

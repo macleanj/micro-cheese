@@ -1,0 +1,91 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: micro-cheese
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+  selector:
+    matchLabels:
+      app: micro-cheese
+  template:
+    metadata:
+      labels:
+        app: micro-cheese
+        psp: 9999.P99999.999.99
+        owner: jerome
+        ownerinfo: jerome_AT_example.com
+        classification: low
+        assetoperator: "Ops_Team"
+        assetuser: jerome
+        softwareversion: "0.0.0.1"
+        protectionresponsible: jerome
+        protectionresponsibleinfo: jerome_AT_example.com
+        riskfactor: low
+    spec:
+      containers:
+      - name: micro-cheese
+        # image: jmaclean/micro-cheese:cheese
+        image: aksmgtacrdevtestrunneraeuep.azurecr.io/micro-cheese:cheese
+        # imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop: ["ALL"]
+          readOnlyRootFilesystem: true
+        readinessProbe:
+          httpGet:
+            path: /index.html
+            port: 8080
+        livenessProbe:
+          httpGet:
+            path: /index.html
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 60
+          successThreshold: 1
+          timeoutSeconds: 5
+        ports:
+        - containerPort: 8080
+        - containerPort: 8443
+        volumeMounts:
+        - name: app-scratch
+          mountPath: /app/scratch
+        - name: vol-tmp
+          mountPath: /tmp
+        - name: vol-bitnami-tmp
+          mountPath: /opt/bitnami/nginx/tmp
+        - name: vol-bitnami-logs
+          mountPath: /opt/bitnami/nginx/logs
+      volumes:
+      - name: app-scratch
+        emptyDir: {}
+      - name: vol-tmp
+        emptyDir: {}
+      - name: vol-bitnami-tmp
+        emptyDir: {}
+      - name: vol-bitnami-logs
+        emptyDir: {}
+      imagePullSecrets:
+      - name: aks-mgt-acr
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: micro-cheese
+  labels:
+    app: micro-cheese
+spec:
+  ports:
+  - name: server
+    port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: micro-cheese
